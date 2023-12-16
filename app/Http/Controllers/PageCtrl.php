@@ -57,12 +57,6 @@ class PageCtrl extends Controller
         return redirect('/Events/Create')->with('message', 'Post created successfully!');
     }
 
-    // viewing edit form
-    public function edit(Events $events)
-    {
-        return view('Inner.ShowEditForm', ['events' => $events]);
-    }
-
     //get data in forms to database (update)
     public function update(Request $request, Events $events)
     {
@@ -85,10 +79,23 @@ class PageCtrl extends Controller
 
     public function Sevnt(Events $events)
     {
+       
         return view('Inner.SEvents', [
             'events' => $events
         ]);
     }
+
+    // viewing edit form
+    public function edit(Events $events)
+    {
+       
+        return view('Inner.ShowEditForm', [
+            'events' => $events
+
+        ]);
+
+    }
+
 
 
 }

@@ -35,8 +35,9 @@ class UserCtrl extends Controller
         // create it tru model for sampling/testing 'User::' can be found at app/models/user
         $user = User::create($formFields);
 
-
-        return redirect('/')->with('success', 'Registered Successfully');
+        //Directly Login After register
+        auth()->login($user);
+        return redirect('/')->with('success', 'Registered Successfully and Logged in');
     }
 
 
@@ -53,9 +54,21 @@ class UserCtrl extends Controller
         ];
 
         if (Auth::attempt($credentials)){
+            $request->session()->regenerate();
             return Redirect('/')->with('success', 'Login Success');
         }
         return back()->with('error', 'Invalid Email or Password!');
 
     }
+
+    public function logout(Request $request) {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('message', 'You have been logged out!');
+
+    }
+
 }

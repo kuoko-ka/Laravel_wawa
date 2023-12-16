@@ -2,10 +2,11 @@
     <section id="get-a-quote" class="get-a-quote">
         <div class="container" data-aos="fade-up">
             <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-25">
+                <h3>{{$events->title}}</h3>
 
                 <form method="POST" action="/Events/{{$events->id}}" enctype="multipart/form-data">
                     @csrf
-                    @method('patch')
+                    @method('PUT')
                     <div class="row gy-4">
                         <div class="col-lg-12">
                             <h4>Edit Post</h4>
@@ -31,7 +32,7 @@
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
 
-                        <div class="col-md-12">
+                        <div class="col-md-12"> 
                             <input type="file" class="form-control" name="img" />
                             <img src="{{$events->img ? asset('storage/' . $events->img) : asset('/img/DmpTestFiles/Sampleimg0.jpg')}}" alt="" class="img-fluid services-img" />
                         </div>

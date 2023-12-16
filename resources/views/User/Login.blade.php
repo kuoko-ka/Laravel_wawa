@@ -56,7 +56,7 @@
                 <ul>
                     <li><a href="{{route('index')}}" class="active">Home</a></li>
                     <li><a href="{{route('Inner')}}">TCU Events</a></li>
-                    <li><a class="get-a-quote" href="{{route('login')}}">Login</a></li>
+            
 
                 </ul>
             </nav><!-- .navbar -->
@@ -108,13 +108,14 @@
                               @csrf
                               <div class="form-group">
                                   <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-                                  <input type="text" name="email" class="form-control" placeholder="Email" required />
+                                  <input type="text" name="email" class="form-control" placeholder="Email" value="{{old('email')}}" required />
                               </div>
                               <div class="form-group">
                                   <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                                  <input type="password" name="password" class="form-control" placeholder="Password" required />
+                                  <input type="password" name="password" class="form-control" placeholder="Password" value="{{old('password')}}" required />
                               </div>
-                              <div class="form-group d-md-flex">
+                              <div class="
+                                      form-group d-md-flex" />
                                   <div class="w-100 text-md-right">
                                       <a href="#">Forgot Password</a>
                                   </div>

@@ -47,12 +47,30 @@
       </a>
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    <!-- right side of header-->
             <nav id="navbar" class="navbar">
                 <ul>
+                    @auth
+                    <li>
+                        <span class="font-bold uppercase">Welcome {{auth()->user()->name}}!</span>
+                    </li>
+                    <li><a href="{{route('index')}}" class="active">Home</a></li>
+                    <li><a href="{{route('Inner')}}">TCU Events</a></li>
+                    <li>
+                        <div class="px-3">
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <button type="submit" class="btn form-control btn-primary rounded submit px-3">Logout</button>
+                            </form>
+                        </div>
+                    </li>
+                    @else
                     <li><a href="{{route('index')}}" class="active">Home</a></li>
                     <li><a href="{{route('Inner')}}">TCU Events</a></li>
                     <li><a class="get-a-quote" href="{{route('login')}}">Login</a></li>
-
+                    <li><a class="get-a-quote" href="{{route('Register')}}">Register</a></li>
+                    @endauth
                 </ul>
             </nav><!-- .navbar -->
 
@@ -67,6 +85,7 @@
          class="alert alert-success alert-dissmisable fade show"> {{Session::get( 'success' )}}
     </div>
     @endif
+    <x-flashy/>
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex align-items-center">
     <div class="container">

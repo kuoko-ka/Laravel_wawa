@@ -51,11 +51,25 @@
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
                 <ul>
+                    @auth
+                    <li>
+                        <span class="font-bold uppercase">Welcome {{auth()->user()->name}}!</span>
+                    </li>
                     <li><a href="{{route('index')}}" class="active">Home</a></li>
                     <li><a href="{{route('Inner')}}">TCU Events</a></li>
-
+                    <li>
+                        <div class="px-3">
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <button type="submit" class="btn form-control btn-primary rounded submit px-3 bg-danger">Logout</button>
+                            </form>
+                        </div>
+                    </li>
+                    @else
+                    <li><a href="{{route('index')}}" class="active">Home</a></li>
+                    <li><a href="{{route('Inner')}}">TCU Events</a></li>
                     <li><a class="get-a-quote" href="{{route('login')}}">Login</a></li>
-
+                    @endauth
                 </ul>
             </nav><!-- .navbar -->
 
@@ -78,7 +92,12 @@
                   <ol>
                       <li><a href="{{route('index')}}">Home</a></li>
                       <li>Events</li>
-                    
+                      
+                      @auth
+                      <li>
+                          <a href="/Events/Create">Create an Event</a>
+                      </li>
+                      @endauth
                   </ol>
               </div>
           </nav>
@@ -169,12 +188,13 @@
     <!-- Template Main JS File -->
     <script src="{{asset('js/main.js')}}"></script>
     <!-- The popping thing after blog creation  -->
+    <x-flashy/>
   <!--  <script src="//unpkg.com/alpinejs" defer></script> -->
 
 
    
 
-    <x-flashy />
+   
 </body>
 
 </html>

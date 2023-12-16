@@ -24,6 +24,11 @@
               <a href="/Events/{{$events->id}}/Edit">
                   <i class="fa-solid fa-pencil"></i> Edit
               </a>
+              <form method="POST" action="/listings/{{$events->id}}">
+                  @csrf
+                    @method('DELETE')
+                  <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
+              </form>
 
           </x-Cards>
 
