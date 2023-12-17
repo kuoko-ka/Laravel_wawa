@@ -95,7 +95,7 @@
                       
                       @auth
                       <li>
-                          <a href="/Events/Create">Create an Event</a>
+                          <a href="{{route('kreeyt')}}">Create an Event</a>
                       </li>
                       @endauth
                   </ol>

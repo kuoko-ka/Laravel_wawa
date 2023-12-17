@@ -36,7 +36,7 @@ Route::post('/LogIn', [UserCtrl::class, 'loginPost'])->name('loginp');
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     // Show event creation
-    Route::get('/Events/Create', [PageCtrl::class, 'CRF']);
+    Route::get('/Events/Create', [PageCtrl::class, 'CRF'])->name('kreeyt');
     // Store event into database
     Route::post('/Events', [PageCtrl::class, 'SF'])->name('SF');
     // store edited event into database
