@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+
 class Events extends Model
 {
     use HasFactory;
@@ -30,10 +30,6 @@ class Events extends Model
     }
     //relasyon sa imong user
 
-    public function user(){
-        return $this->belongsTo(User::class, 'user_id');
-        
-    }
-
+   
 
 }

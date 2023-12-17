@@ -44,10 +44,6 @@ class User extends Authenticatable
     ];
 
     //relationsheet at events
-    public function events(){
-        return $this->hasMany(Events::class, 'user_id');
 
-
-    }
 
 }

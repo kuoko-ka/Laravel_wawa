@@ -3,7 +3,7 @@
       <div class="container" data-aos="fade-up" >
           <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-25">
           
-            <form action="/Events" method="POST" enctype="multipart/form-data">
+            <form action="/Events/Post" method="POST" enctype="multipart/form-data">
                @csrf
               <div class="row gy-4">      
                 <div class="col-lg-12">

@@ -25,29 +25,29 @@ use Illuminate\Support\Facades\Route;
 
 
 //User route
-Route::get('/Register', [UserCtrl::class, 'Register'])->name('Register');
-Route::post('/registers', [UserCtrl::class, 'registerPost'])->name('registers');
-Route::post('/logout', [UserCtrl::class, 'logout'])->name('LG');
-Route::get('/LogIn', [UserCtrl::class, 'login'])->name('login');
-Route::post('/LogIn', [UserCtrl::class, 'loginPost'])->name('loginp');
+Route::get('/Register', [UserCtrl::class, 'Register'])->name('Register')->middleware('guest');
+Route::post('/registers', [UserCtrl::class, 'registerPost'])->name('registers')->middleware('guest');
+Route::post('/logout', [UserCtrl::class, 'logout'])->name('LG')->middleware('guest');
+Route::get('/LogIn', [UserCtrl::class, 'login'])->name('login')->middleware('guest');
+Route::post('/LogIn', [UserCtrl::class, 'loginPost'])->name('loginp')->middleware('guest');
 
 //admin route
 
 
-Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
-    // Show event creation
-    Route::get('/Events/Create', [PageCtrl::class, 'CRF'])->name('kreeyt');
-    // Store event into database
-    Route::post('/Events', [PageCtrl::class, 'SF'])->name('SF');
-    // store edited event into database
-    Route::get('/Events/{events}/Edit', [PageCtrl::class, 'edit']);
-    Route::put('/Events/{events}', [PageCtrl::class, 'update']);
 
-});
+
+    // Store event into database
+Route::post('/Events/Post', [PageCtrl::class, 'SF'])->middleware('auth','isAdmin');
+// Show event creation
+Route::get('/Events/Create', [PageCtrl::class, 'CRF'])->name('kreeyt')->middleware('auth','isAdmin');
+
+// store edited event into database
+Route::get('/Events/{events}/Edit', [PageCtrl::class, 'edit'])->middleware('auth', 'isAdmin');
+Route::put('/Events/{events}', [PageCtrl::class, 'update'])->middleware('auth', 'isAdmin');
+Route::delete('/Events/{events}',[PageCtrl::class,'delete'])->middleware('auth','isAdmin');
+
 //general
 Route::get('/', [PageCtrl::class, 'index'])->name('index');
-
-
 //All Events show
 Route::get('/Events', [PageCtrl::class, 'InnerC'])->name('Inner');
 

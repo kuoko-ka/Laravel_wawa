@@ -19,7 +19,7 @@ class AdminMiddleware
 
             //admin is 0
             //user is 1
-            if (Auth::user()->role == 0) {
+            if (Auth::user()->roles == 0) {
                 return $next($request);
 
             } else{

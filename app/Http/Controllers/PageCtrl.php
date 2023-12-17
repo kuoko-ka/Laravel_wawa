@@ -76,10 +76,10 @@ class PageCtrl extends Controller
 
 
 
-
+    //single event
     public function Sevnt(Events $events)
     {
-       
+
         return view('Inner.SEvents', [
             'events' => $events
         ]);
@@ -88,11 +88,17 @@ class PageCtrl extends Controller
     // viewing edit form
     public function edit(Events $events)
     {
-       
+
         return view('Inner.ShowEditForm', [
             'events' => $events
 
         ]);
+
+    }
+    public function delete(Events $events)
+    {
+        $events->delete();
+        return redirect('/Events')->with('message', 'Post deleted successfully!');
 
     }
 
