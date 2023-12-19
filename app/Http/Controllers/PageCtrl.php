@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Events;
+Use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -41,18 +42,21 @@ class PageCtrl extends Controller
 
 
     //store form to database POST
-    public function SF(Request $request)
+    public function SF(Request $request, User $user)
     {
+
         $formFields = $request->validate([
             'title' => 'required',
             'department' => 'required',
             'tags' =>  'required',
-            'description' => 'required'
+            'description' => 'required',
+ 
             ]);
 
         if ($request->hasFile('img')) {
             $formFields['img'] = $request->file('img')->store('imgs', 'public');
         }
+
         Events::create($formFields);
         return redirect('/Events/Create')->with('message', 'Post created successfully!');
     }
@@ -77,11 +81,12 @@ class PageCtrl extends Controller
 
 
     //single event
-    public function Sevnt(Events $events)
+    public function Sevnt(Events $events, User $user)
     {
 
         return view('Inner.SEvents', [
             'events' => $events
+
         ]);
     }
 

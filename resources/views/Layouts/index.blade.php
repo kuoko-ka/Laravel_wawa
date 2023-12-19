@@ -59,7 +59,7 @@
                     <li><a href="{{route('Inner')}}">TCU Events</a></li>
                     <li>
                         <div class="px-3">
-                            <form method="POST" action="/logout">
+                            <form method="post" action="{{route('LG')}}">
                                 @csrf
                                 <button type="submit" class="btn form-control btn-primary rounded submit px-3">Logout</button>
                             </form>

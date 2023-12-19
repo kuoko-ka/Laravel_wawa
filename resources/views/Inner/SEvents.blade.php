@@ -20,6 +20,8 @@
           </div>
 
         </div>
+          @auth
+          @if(Auth::user()->roles == 0)
           <x-Cards class="mt-4 p-2 space-x-6">
               <a href="/Events/{{$events->id}}/Edit">
                   <i class="fa-solid fa-pencil"></i> Edit
@@ -31,7 +33,8 @@
               </form>
 
           </x-Cards>
-
+          @endif
+        @endauth
       </div>
     </section>
  </x-InnerMain>
